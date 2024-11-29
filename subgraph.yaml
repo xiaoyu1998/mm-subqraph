@@ -1,0 +1,54 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: EventEmitter
+    network: arbitrum-sepolia
+    source:
+      address: "0x401D6d1d45008B1e0eB40bB32f46705bF4bD62A2"
+      abi: EventEmitter
+      startBlock: 101400000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Add
+        - Borrow
+        - ClaimFees
+        - Close
+        - Deposit
+        - Liquidation
+        - PoolUpdated
+        - Remove
+        - Repay
+        - Swap
+        - Withdraw
+      abis:
+        - name: EventEmitter
+          file: ./abis/EventEmitter.json
+      eventHandlers:
+        - event: Add(indexed address,address,address,address,uint256,uint256)
+          handler: handleAdd
+        - event: Borrow(indexed address,address,address,uint256,uint8,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleBorrow
+        - event: ClaimFees(indexed address,uint256,uint256,uint256)
+          handler: handleClaimFees
+        - event: Close(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleClose
+        - event: Deposit(indexed address,address,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleDeposit
+        - event: Liquidation(indexed address,indexed address,uint256,uint256,uint256,uint256)
+          handler: handleLiquidation
+        - event: PoolUpdated(indexed address,uint256,uint256,uint256,uint256)
+          handler: handlePoolUpdated
+        - event: Remove(indexed address,address,address,uint256,address,uint256,uint256)
+          handler: handleRemove
+        - event: Repay(indexed address,address,address,uint256,uint8,uint256,uint256,uint256,uint256,uint256)
+          handler: handleRepay
+        - event: Swap(indexed address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleSwap
+        - event: Withdraw(indexed address,address,address,uint256,address,uint256,uint256,uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/event-emitter.ts
