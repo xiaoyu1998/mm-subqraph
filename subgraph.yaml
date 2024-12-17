@@ -1,4 +1,6 @@
-specVersion: 0.0.5
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
 schema:
   file: ./schema.graphql
 dataSources:
@@ -6,9 +8,9 @@ dataSources:
     name: EventEmitter
     network: arbitrum-sepolia
     source:
-      address: "0x401D6d1d45008B1e0eB40bB32f46705bF4bD62A2"
+      address: "0xbcc4Ec18e199892b05A3f6D59c38bA1B909062C8"
       abi: EventEmitter
-      startBlock: 101400000
+      startBlock: 107865368
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -20,6 +22,7 @@ dataSources:
         - Close
         - Deposit
         - Liquidation
+        - PoolCreated
         - PoolUpdated
         - Remove
         - Repay
@@ -41,6 +44,8 @@ dataSources:
           handler: handleDeposit
         - event: Liquidation(indexed address,indexed address,uint256,uint256,uint256,uint256)
           handler: handleLiquidation
+        - event: PoolCreated(address,address,address,uint256,uint256,uint256)
+          handler: handlePoolCreated
         - event: PoolUpdated(indexed address,uint256,uint256,uint256,uint256)
           handler: handlePoolUpdated
         - event: Remove(indexed address,address,address,uint256,address,uint256,uint256)

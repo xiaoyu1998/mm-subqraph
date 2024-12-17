@@ -5,6 +5,7 @@ import {
   Close as CloseEvent,
   Deposit as DepositEvent,
   Liquidation as LiquidationEvent,
+  PoolCreated as PoolCreatedEvent,
   PoolUpdated as PoolUpdatedEvent,
   Remove as RemoveEvent,
   Repay as RepayEvent,
@@ -18,6 +19,7 @@ import {
   Close,
   Deposit,
   Liquidation,
+  PoolCreated,
   PoolUpdated,
   Remove,
   Repay,
@@ -52,10 +54,10 @@ export function handleBorrow(event: BorrowEvent): void {
   entity.tokenIndex = event.params.tokenIndex
   entity.borrowAmount = event.params.borrowAmount
   entity.borrowRate = event.params.borrowRate
-  entity.collateralIn = event.params.collateralIn
-  entity.debtScaledIn = event.params.debtScaledIn
-  entity.collateralOut = event.params.collateralOut
-  entity.debtScaledOut = event.params.debtScaledOut
+  entity.baseCollateral = event.params.baseCollateral
+  entity.baseDebtScaled = event.params.baseDebtScaled
+  entity.memeCollateral = event.params.memeCollateral
+  entity.memeDebtScaled = event.params.memeDebtScaled
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -138,6 +140,24 @@ export function handleLiquidation(event: LiquidationEvent): void {
   entity.save()
 }
 
+export function handlePoolCreated(event: PoolCreatedEvent): void {
+  let entity = new PoolCreated(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.baseToken = event.params.baseToken
+  entity.memeToken = event.params.memeToken
+  entity.source = event.params.source
+  entity.createdTimestamp = event.params.createdTimestamp
+  entity.baseDecimals = event.params.baseDecimals
+  entity.memeDecimals = event.params.memeDecimals
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
+
 export function handlePoolUpdated(event: PoolUpdatedEvent): void {
   let entity = new PoolUpdated(
     event.transaction.hash.concatI32(event.logIndex.toI32())
@@ -184,10 +204,10 @@ export function handleRepay(event: RepayEvent): void {
   entity.positionId = event.params.positionId
   entity.tokenIndex = event.params.tokenIndex
   entity.repayAmount = event.params.repayAmount
-  entity.collateralIn = event.params.collateralIn
-  entity.debtScaledIn = event.params.debtScaledIn
-  entity.collateralOut = event.params.collateralOut
-  entity.debtScaledOut = event.params.debtScaledOut
+  entity.baseCollateral = event.params.baseCollateral
+  entity.baseDebtScaled = event.params.baseDebtScaled
+  entity.memeCollateral = event.params.memeCollateral
+  entity.memeDebtScaled = event.params.memeDebtScaled
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -206,10 +226,10 @@ export function handleSwap(event: SwapEvent): void {
   entity.amountIn = event.params.amountIn
   entity.amountOut = event.params.amountOut
   entity.fee = event.params.fee
-  entity.collateralIn = event.params.collateralIn
-  entity.debtScaledIn = event.params.debtScaledIn
-  entity.collateralOut = event.params.collateralOut
-  entity.debtScaledOut = event.params.debtScaledOut
+  entity.baseCollateral = event.params.baseCollateral
+  entity.baseDebtScaled = event.params.baseDebtScaled
+  entity.memeCollateral = event.params.memeCollateral
+  entity.memeDebtScaled = event.params.memeDebtScaled
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp

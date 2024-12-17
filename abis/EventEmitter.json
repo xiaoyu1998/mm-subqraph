@@ -109,25 +109,25 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "collateralIn",
+        "name": "baseCollateral",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "debtScaledIn",
+        "name": "baseDebtScaled",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "collateralOut",
+        "name": "memeCollateral",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "debtScaledOut",
+        "name": "memeDebtScaled",
         "type": "uint256"
       }
     ],
@@ -304,6 +304,49 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "address",
+        "name": "baseToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "memeToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "source",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "createdTimestamp",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "baseDecimals",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "memeDecimals",
+        "type": "uint256"
+      }
+    ],
+    "name": "PoolCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "pool",
@@ -428,25 +471,25 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "collateralIn",
+        "name": "baseCollateral",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "debtScaledIn",
+        "name": "baseDebtScaled",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "collateralOut",
+        "name": "memeCollateral",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "debtScaledOut",
+        "name": "memeDebtScaled",
         "type": "uint256"
       }
     ],
@@ -495,25 +538,25 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "collateralIn",
+        "name": "baseCollateral",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "debtScaledIn",
+        "name": "baseDebtScaled",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "collateralOut",
+        "name": "memeCollateral",
         "type": "uint256"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "debtScaledOut",
+        "name": "memeDebtScaled",
         "type": "uint256"
       }
     ],
@@ -742,6 +785,24 @@
   },
   {
     "inputs": [
+      { "internalType": "address", "name": "baseToken", "type": "address" },
+      { "internalType": "address", "name": "memeToken", "type": "address" },
+      { "internalType": "address", "name": "source", "type": "address" },
+      {
+        "internalType": "uint256",
+        "name": "createdTimestamp",
+        "type": "uint256"
+      },
+      { "internalType": "uint256", "name": "baseDecimals", "type": "uint256" },
+      { "internalType": "uint256", "name": "memeDecimals", "type": "uint256" }
+    ],
+    "name": "emitPoolCreated",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
       {
         "internalType": "address",
         "name": "underlyingAsset",
@@ -778,7 +839,6 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "eventEmitter", "type": "address" },
       { "internalType": "address", "name": "repayer", "type": "address" },
       { "internalType": "address", "name": "baseToken", "type": "address" },
       { "internalType": "address", "name": "memeToken", "type": "address" },

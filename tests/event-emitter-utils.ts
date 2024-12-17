@@ -7,6 +7,7 @@ import {
   Close,
   Deposit,
   Liquidation,
+  PoolCreated,
   PoolUpdated,
   Remove,
   Repay,
@@ -62,10 +63,10 @@ export function createBorrowEvent(
   tokenIndex: i32,
   borrowAmount: BigInt,
   borrowRate: BigInt,
-  collateralIn: BigInt,
-  debtScaledIn: BigInt,
-  collateralOut: BigInt,
-  debtScaledOut: BigInt
+  baseCollateral: BigInt,
+  baseDebtScaled: BigInt,
+  memeCollateral: BigInt,
+  memeDebtScaled: BigInt
 ): Borrow {
   let borrowEvent = changetype<Borrow>(newMockEvent())
 
@@ -106,26 +107,26 @@ export function createBorrowEvent(
   )
   borrowEvent.parameters.push(
     new ethereum.EventParam(
-      "collateralIn",
-      ethereum.Value.fromUnsignedBigInt(collateralIn)
+      "baseCollateral",
+      ethereum.Value.fromUnsignedBigInt(baseCollateral)
     )
   )
   borrowEvent.parameters.push(
     new ethereum.EventParam(
-      "debtScaledIn",
-      ethereum.Value.fromUnsignedBigInt(debtScaledIn)
+      "baseDebtScaled",
+      ethereum.Value.fromUnsignedBigInt(baseDebtScaled)
     )
   )
   borrowEvent.parameters.push(
     new ethereum.EventParam(
-      "collateralOut",
-      ethereum.Value.fromUnsignedBigInt(collateralOut)
+      "memeCollateral",
+      ethereum.Value.fromUnsignedBigInt(memeCollateral)
     )
   )
   borrowEvent.parameters.push(
     new ethereum.EventParam(
-      "debtScaledOut",
-      ethereum.Value.fromUnsignedBigInt(debtScaledOut)
+      "memeDebtScaled",
+      ethereum.Value.fromUnsignedBigInt(memeDebtScaled)
     )
   )
 
@@ -312,6 +313,49 @@ export function createLiquidationEvent(
   return liquidationEvent
 }
 
+export function createPoolCreatedEvent(
+  baseToken: Address,
+  memeToken: Address,
+  source: Address,
+  createdTimestamp: BigInt,
+  baseDecimals: BigInt,
+  memeDecimals: BigInt
+): PoolCreated {
+  let poolCreatedEvent = changetype<PoolCreated>(newMockEvent())
+
+  poolCreatedEvent.parameters = new Array()
+
+  poolCreatedEvent.parameters.push(
+    new ethereum.EventParam("baseToken", ethereum.Value.fromAddress(baseToken))
+  )
+  poolCreatedEvent.parameters.push(
+    new ethereum.EventParam("memeToken", ethereum.Value.fromAddress(memeToken))
+  )
+  poolCreatedEvent.parameters.push(
+    new ethereum.EventParam("source", ethereum.Value.fromAddress(source))
+  )
+  poolCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "createdTimestamp",
+      ethereum.Value.fromUnsignedBigInt(createdTimestamp)
+    )
+  )
+  poolCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "baseDecimals",
+      ethereum.Value.fromUnsignedBigInt(baseDecimals)
+    )
+  )
+  poolCreatedEvent.parameters.push(
+    new ethereum.EventParam(
+      "memeDecimals",
+      ethereum.Value.fromUnsignedBigInt(memeDecimals)
+    )
+  )
+
+  return poolCreatedEvent
+}
+
 export function createPoolUpdatedEvent(
   pool: Address,
   liquidityRate: BigInt,
@@ -408,10 +452,10 @@ export function createRepayEvent(
   positionId: BigInt,
   tokenIndex: i32,
   repayAmount: BigInt,
-  collateralIn: BigInt,
-  debtScaledIn: BigInt,
-  collateralOut: BigInt,
-  debtScaledOut: BigInt
+  baseCollateral: BigInt,
+  baseDebtScaled: BigInt,
+  memeCollateral: BigInt,
+  memeDebtScaled: BigInt
 ): Repay {
   let repayEvent = changetype<Repay>(newMockEvent())
 
@@ -446,26 +490,26 @@ export function createRepayEvent(
   )
   repayEvent.parameters.push(
     new ethereum.EventParam(
-      "collateralIn",
-      ethereum.Value.fromUnsignedBigInt(collateralIn)
+      "baseCollateral",
+      ethereum.Value.fromUnsignedBigInt(baseCollateral)
     )
   )
   repayEvent.parameters.push(
     new ethereum.EventParam(
-      "debtScaledIn",
-      ethereum.Value.fromUnsignedBigInt(debtScaledIn)
+      "baseDebtScaled",
+      ethereum.Value.fromUnsignedBigInt(baseDebtScaled)
     )
   )
   repayEvent.parameters.push(
     new ethereum.EventParam(
-      "collateralOut",
-      ethereum.Value.fromUnsignedBigInt(collateralOut)
+      "memeCollateral",
+      ethereum.Value.fromUnsignedBigInt(memeCollateral)
     )
   )
   repayEvent.parameters.push(
     new ethereum.EventParam(
-      "debtScaledOut",
-      ethereum.Value.fromUnsignedBigInt(debtScaledOut)
+      "memeDebtScaled",
+      ethereum.Value.fromUnsignedBigInt(memeDebtScaled)
     )
   )
 
@@ -479,10 +523,10 @@ export function createSwapEvent(
   amountIn: BigInt,
   amountOut: BigInt,
   fee: BigInt,
-  collateralIn: BigInt,
-  debtScaledIn: BigInt,
-  collateralOut: BigInt,
-  debtScaledOut: BigInt
+  baseCollateral: BigInt,
+  baseDebtScaled: BigInt,
+  memeCollateral: BigInt,
+  memeDebtScaled: BigInt
 ): Swap {
   let swapEvent = changetype<Swap>(newMockEvent())
 
@@ -514,26 +558,26 @@ export function createSwapEvent(
   )
   swapEvent.parameters.push(
     new ethereum.EventParam(
-      "collateralIn",
-      ethereum.Value.fromUnsignedBigInt(collateralIn)
+      "baseCollateral",
+      ethereum.Value.fromUnsignedBigInt(baseCollateral)
     )
   )
   swapEvent.parameters.push(
     new ethereum.EventParam(
-      "debtScaledIn",
-      ethereum.Value.fromUnsignedBigInt(debtScaledIn)
+      "baseDebtScaled",
+      ethereum.Value.fromUnsignedBigInt(baseDebtScaled)
     )
   )
   swapEvent.parameters.push(
     new ethereum.EventParam(
-      "collateralOut",
-      ethereum.Value.fromUnsignedBigInt(collateralOut)
+      "memeCollateral",
+      ethereum.Value.fromUnsignedBigInt(memeCollateral)
     )
   )
   swapEvent.parameters.push(
     new ethereum.EventParam(
-      "debtScaledOut",
-      ethereum.Value.fromUnsignedBigInt(debtScaledOut)
+      "memeDebtScaled",
+      ethereum.Value.fromUnsignedBigInt(memeDebtScaled)
     )
   )
 

@@ -20,10 +20,10 @@ type Borrow @entity(immutable: true) {
   tokenIndex: Int! # uint8
   borrowAmount: BigInt! # uint256
   borrowRate: BigInt! # uint256
-  collateralIn: BigInt! # uint256
-  debtScaledIn: BigInt! # uint256
-  collateralOut: BigInt! # uint256
-  debtScaledOut: BigInt! # uint256
+  baseCollateral: BigInt! # uint256
+  baseDebtScaled: BigInt! # uint256
+  memeCollateral: BigInt! # uint256
+  memeDebtScaled: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -80,6 +80,19 @@ type Liquidation @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
+type PoolCreated @entity(immutable: true) {
+  id: Bytes!
+  baseToken: Bytes! # address
+  memeToken: Bytes! # address
+  source: Bytes! # address
+  createdTimestamp: BigInt! # uint256
+  baseDecimals: BigInt! # uint256
+  memeDecimals: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
 type PoolUpdated @entity(immutable: true) {
   id: Bytes!
   pool: Bytes! # address
@@ -114,10 +127,10 @@ type Repay @entity(immutable: true) {
   positionId: BigInt! # uint256
   tokenIndex: Int! # uint8
   repayAmount: BigInt! # uint256
-  collateralIn: BigInt! # uint256
-  debtScaledIn: BigInt! # uint256
-  collateralOut: BigInt! # uint256
-  debtScaledOut: BigInt! # uint256
+  baseCollateral: BigInt! # uint256
+  baseDebtScaled: BigInt! # uint256
+  memeCollateral: BigInt! # uint256
+  memeDebtScaled: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -131,10 +144,10 @@ type Swap @entity(immutable: true) {
   amountIn: BigInt! # uint256
   amountOut: BigInt! # uint256
   fee: BigInt! # uint256
-  collateralIn: BigInt! # uint256
-  debtScaledIn: BigInt! # uint256
-  collateralOut: BigInt! # uint256
-  debtScaledOut: BigInt! # uint256
+  baseCollateral: BigInt! # uint256
+  baseDebtScaled: BigInt! # uint256
+  memeCollateral: BigInt! # uint256
+  memeDebtScaled: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
