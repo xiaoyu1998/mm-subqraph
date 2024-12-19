@@ -2,7 +2,7 @@ specVersion: 1.0.0
 indexerHints:
   prune: auto
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: EventEmitter
@@ -30,11 +30,12 @@ dataSources:
         - Withdraw
       abis:
         - name: EventEmitter
-          file: ./abis/EventEmitter.json
+          file: EventEmitter/abis/EventEmitter.json
       eventHandlers:
         - event: Add(indexed address,address,address,address,uint256,uint256)
           handler: handleAdd
-        - event: Borrow(indexed address,address,address,uint256,uint8,uint256,uint256,uint256,uint256,uint256,uint256)
+        - event: Borrow(indexed
+            address,address,address,uint256,uint8,uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleBorrow
         - event: ClaimFees(indexed address,uint256,uint256,uint256)
           handler: handleClaimFees
@@ -50,10 +51,13 @@ dataSources:
           handler: handlePoolUpdated
         - event: Remove(indexed address,address,address,uint256,address,uint256,uint256)
           handler: handleRemove
-        - event: Repay(indexed address,address,address,uint256,uint8,uint256,uint256,uint256,uint256,uint256)
+        - event: Repay(indexed
+            address,address,address,uint256,uint8,uint256,uint256,uint256,uint256,uint256)
           handler: handleRepay
-        - event: Swap(indexed address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
+        - event: Swap(indexed
+            address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleSwap
-        - event: Withdraw(indexed address,address,address,uint256,address,uint256,uint256,uint256,uint256)
+        - event: Withdraw(indexed
+            address,address,address,uint256,address,uint256,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/event-emitter.ts
+      file: EventEmitter/EventEmitter.wasm

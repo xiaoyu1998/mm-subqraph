@@ -1,0 +1,170 @@
+type Add @entity(immutable: true) {
+  id: Bytes!
+  adder: Bytes! # address
+  baseToken: Bytes! # address
+  memeToken: Bytes! # address
+  to: Bytes! # address
+  baseAmount: BigInt! # uint256
+  memeAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Borrow @entity(immutable: true) {
+  id: Bytes!
+  borrower: Bytes! # address
+  baseToken: Bytes! # address
+  memeToken: Bytes! # address
+  positionId: BigInt! # uint256
+  tokenIndex: Int! # uint8
+  borrowAmount: BigInt! # uint256
+  borrowRate: BigInt! # uint256
+  baseCollateral: BigInt! # uint256
+  baseDebtScaled: BigInt! # uint256
+  memeCollateral: BigInt! # uint256
+  memeDebtScaled: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ClaimFees @entity(immutable: true) {
+  id: Bytes!
+  pool: Bytes! # address
+  scaledUnclaimedFee: BigInt! # uint256
+  liquidityIndex: BigInt! # uint256
+  unclaimedFee: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Close @entity(immutable: true) {
+  id: Bytes!
+  poolUsd: Bytes! # address
+  account: Bytes! # address
+  amountUsdStartClose: BigInt! # uint256
+  amountUsdAfterRepayAndSellCollateral: BigInt! # uint256
+  amountUsdAfterBuyCollateralAndRepay: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Deposit @entity(immutable: true) {
+  id: Bytes!
+  depositor: Bytes! # address
+  baseToken: Bytes! # address
+  memeToken: Bytes! # address
+  depositAmount: BigInt! # uint256
+  baseCollateral: BigInt! # uint256
+  baseDebtScaled: BigInt! # uint256
+  memeCollateral: BigInt! # uint256
+  memeDebtScaled: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Liquidation @entity(immutable: true) {
+  id: Bytes!
+  liquidator: Bytes! # address
+  account: Bytes! # address
+  marginLevel: BigInt! # uint256
+  marginLevelLiquidationThreshold: BigInt! # uint256
+  totalCollateralUsd: BigInt! # uint256
+  totalDebtUsd: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PoolCreated @entity(immutable: true) {
+  id: Bytes!
+  baseToken: Bytes! # address
+  memeToken: Bytes! # address
+  source: Bytes! # address
+  createdTimestamp: BigInt! # uint256
+  baseDecimals: BigInt! # uint256
+  memeDecimals: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PoolUpdated @entity(immutable: true) {
+  id: Bytes!
+  pool: Bytes! # address
+  liquidityRate: BigInt! # uint256
+  borrowRate: BigInt! # uint256
+  liquidityIndex: BigInt! # uint256
+  borrowIndex: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Remove @entity(immutable: true) {
+  id: Bytes!
+  remover: Bytes! # address
+  baseToken: Bytes! # address
+  memeToken: Bytes! # address
+  liquidity: BigInt! # uint256
+  to: Bytes! # address
+  baseAmount: BigInt! # uint256
+  memeAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Repay @entity(immutable: true) {
+  id: Bytes!
+  repayer: Bytes! # address
+  baseToken: Bytes! # address
+  memeToken: Bytes! # address
+  positionId: BigInt! # uint256
+  tokenIndex: Int! # uint8
+  repayAmount: BigInt! # uint256
+  baseCollateral: BigInt! # uint256
+  baseDebtScaled: BigInt! # uint256
+  memeCollateral: BigInt! # uint256
+  memeDebtScaled: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Swap @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  tokenIn: Bytes! # address
+  tokenOut: Bytes! # address
+  amountIn: BigInt! # uint256
+  amountOut: BigInt! # uint256
+  fee: BigInt! # uint256
+  baseCollateral: BigInt! # uint256
+  baseDebtScaled: BigInt! # uint256
+  memeCollateral: BigInt! # uint256
+  memeDebtScaled: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Withdraw @entity(immutable: true) {
+  id: Bytes!
+  withdrawer: Bytes! # address
+  baseToken: Bytes! # address
+  memeToken: Bytes! # address
+  withdrawAmount: BigInt! # uint256
+  to: Bytes! # address
+  baseCollateral: BigInt! # uint256
+  baseDebtScaled: BigInt! # uint256
+  memeCollateral: BigInt! # uint256
+  memeDebtScaled: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
