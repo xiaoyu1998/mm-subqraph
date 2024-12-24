@@ -4,10 +4,10 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ cactuslabs/mm-subgraph",
-    "create-local": "graph create --node http://localhost:8020/ cactuslabs/mm-subgraph",
-    "remove-local": "graph remove --node http://localhost:8020/ cactuslabs/mm-subgraph",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 cactuslabs/mm-subgraph",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ xiaoyu/mm-subgraph",
+    "create-local": "graph create --node http://localhost:8020/ xiaoyu/mm-subgraph",
+    "remove-local": "graph remove --node http://localhost:8020/ xiaoyu/mm-subgraph",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 xiaoyu/mm-subgraph",
     "test": "graph test"
   },
   "dependencies": {

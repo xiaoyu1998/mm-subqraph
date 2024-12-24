@@ -13,7 +13,7 @@ import {
   Repay,
   Swap,
   Withdraw
-} from "../generated/EventEmitter/EventEmitter"
+} from "../generated/Contract/Contract"
 
 export function createAddEvent(
   adder: Address,
@@ -168,39 +168,18 @@ export function createClaimFeesEvent(
   return claimFeesEvent
 }
 
-export function createCloseEvent(
-  poolUsd: Address,
-  account: Address,
-  amountUsdStartClose: BigInt,
-  amountUsdAfterRepayAndSellCollateral: BigInt,
-  amountUsdAfterBuyCollateralAndRepay: BigInt
-): Close {
+export function createCloseEvent(account: Address, positionId: BigInt): Close {
   let closeEvent = changetype<Close>(newMockEvent())
 
   closeEvent.parameters = new Array()
 
   closeEvent.parameters.push(
-    new ethereum.EventParam("poolUsd", ethereum.Value.fromAddress(poolUsd))
-  )
-  closeEvent.parameters.push(
     new ethereum.EventParam("account", ethereum.Value.fromAddress(account))
   )
   closeEvent.parameters.push(
     new ethereum.EventParam(
-      "amountUsdStartClose",
-      ethereum.Value.fromUnsignedBigInt(amountUsdStartClose)
-    )
-  )
-  closeEvent.parameters.push(
-    new ethereum.EventParam(
-      "amountUsdAfterRepayAndSellCollateral",
-      ethereum.Value.fromUnsignedBigInt(amountUsdAfterRepayAndSellCollateral)
-    )
-  )
-  closeEvent.parameters.push(
-    new ethereum.EventParam(
-      "amountUsdAfterBuyCollateralAndRepay",
-      ethereum.Value.fromUnsignedBigInt(amountUsdAfterBuyCollateralAndRepay)
+      "positionId",
+      ethereum.Value.fromUnsignedBigInt(positionId)
     )
   )
 
@@ -211,6 +190,7 @@ export function createDepositEvent(
   depositor: Address,
   baseToken: Address,
   memeToken: Address,
+  positionId: BigInt,
   depositAmount: BigInt,
   baseCollateral: BigInt,
   baseDebtScaled: BigInt,
@@ -229,6 +209,12 @@ export function createDepositEvent(
   )
   depositEvent.parameters.push(
     new ethereum.EventParam("memeToken", ethereum.Value.fromAddress(memeToken))
+  )
+  depositEvent.parameters.push(
+    new ethereum.EventParam(
+      "positionId",
+      ethereum.Value.fromUnsignedBigInt(positionId)
+    )
   )
   depositEvent.parameters.push(
     new ethereum.EventParam(
@@ -270,7 +256,8 @@ export function createLiquidationEvent(
   marginLevel: BigInt,
   marginLevelLiquidationThreshold: BigInt,
   totalCollateralUsd: BigInt,
-  totalDebtUsd: BigInt
+  totalDebtUsd: BigInt,
+  memePrice: BigInt
 ): Liquidation {
   let liquidationEvent = changetype<Liquidation>(newMockEvent())
 
@@ -307,6 +294,12 @@ export function createLiquidationEvent(
     new ethereum.EventParam(
       "totalDebtUsd",
       ethereum.Value.fromUnsignedBigInt(totalDebtUsd)
+    )
+  )
+  liquidationEvent.parameters.push(
+    new ethereum.EventParam(
+      "memePrice",
+      ethereum.Value.fromUnsignedBigInt(memePrice)
     )
   )
 

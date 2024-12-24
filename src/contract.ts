@@ -11,7 +11,7 @@ import {
   Repay as RepayEvent,
   Swap as SwapEvent,
   Withdraw as WithdrawEvent
-} from "../generated/EventEmitter/EventEmitter"
+} from "../generated/Contract/Contract"
 import {
   Add,
   Borrow,
@@ -86,13 +86,8 @@ export function handleClose(event: CloseEvent): void {
   let entity = new Close(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
-  entity.poolUsd = event.params.poolUsd
   entity.account = event.params.account
-  entity.amountUsdStartClose = event.params.amountUsdStartClose
-  entity.amountUsdAfterRepayAndSellCollateral =
-    event.params.amountUsdAfterRepayAndSellCollateral
-  entity.amountUsdAfterBuyCollateralAndRepay =
-    event.params.amountUsdAfterBuyCollateralAndRepay
+  entity.positionId = event.params.positionId
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -108,6 +103,7 @@ export function handleDeposit(event: DepositEvent): void {
   entity.depositor = event.params.depositor
   entity.baseToken = event.params.baseToken
   entity.memeToken = event.params.memeToken
+  entity.positionId = event.params.positionId
   entity.depositAmount = event.params.depositAmount
   entity.baseCollateral = event.params.baseCollateral
   entity.baseDebtScaled = event.params.baseDebtScaled
@@ -132,6 +128,7 @@ export function handleLiquidation(event: LiquidationEvent): void {
     event.params.marginLevelLiquidationThreshold
   entity.totalCollateralUsd = event.params.totalCollateralUsd
   entity.totalDebtUsd = event.params.totalDebtUsd
+  entity.memePrice = event.params.memePrice
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp

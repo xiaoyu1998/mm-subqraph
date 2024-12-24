@@ -5,11 +5,11 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: EventEmitter
+    name: Contract
     network: arbitrum-sepolia
     source:
-      address: "0xEdE99e194e23e653A6b85d97AADf1578ea291650"
-      abi: EventEmitter
+      address: "0x9f6867DA9a3391B5aB3787556332f5DfD07d932E"
+      abi: Contract
       startBlock: 107865368
     mapping:
       kind: ethereum/events
@@ -29,8 +29,8 @@ dataSources:
         - Swap
         - Withdraw
       abis:
-        - name: EventEmitter
-          file: ./abis/EventEmitter.json
+        - name: Contract
+          file: ./abis/Contract.json
       eventHandlers:
         - event: Add(indexed address,address,address,address,uint256,uint256)
           handler: handleAdd
@@ -38,11 +38,11 @@ dataSources:
           handler: handleBorrow
         - event: ClaimFees(indexed address,uint256,uint256,uint256)
           handler: handleClaimFees
-        - event: Close(indexed address,indexed address,uint256,uint256,uint256)
+        - event: Close(indexed address,uint256)
           handler: handleClose
-        - event: Deposit(indexed address,address,address,uint256,uint256,uint256,uint256,uint256)
+        - event: Deposit(indexed address,address,address,uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleDeposit
-        - event: Liquidation(indexed address,indexed address,uint256,uint256,uint256,uint256)
+        - event: Liquidation(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256)
           handler: handleLiquidation
         - event: PoolCreated(address,address,address,uint256,uint256,uint256)
           handler: handlePoolCreated
@@ -56,4 +56,4 @@ dataSources:
           handler: handleSwap
         - event: Withdraw(indexed address,address,address,uint256,address,uint256,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/event-emitter.ts
+      file: ./src/contract.ts

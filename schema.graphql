@@ -42,11 +42,8 @@ type ClaimFees @entity(immutable: true) {
 
 type Close @entity(immutable: true) {
   id: Bytes!
-  poolUsd: Bytes! # address
   account: Bytes! # address
-  amountUsdStartClose: BigInt! # uint256
-  amountUsdAfterRepayAndSellCollateral: BigInt! # uint256
-  amountUsdAfterBuyCollateralAndRepay: BigInt! # uint256
+  positionId: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -57,6 +54,7 @@ type Deposit @entity(immutable: true) {
   depositor: Bytes! # address
   baseToken: Bytes! # address
   memeToken: Bytes! # address
+  positionId: BigInt! # uint256
   depositAmount: BigInt! # uint256
   baseCollateral: BigInt! # uint256
   baseDebtScaled: BigInt! # uint256
@@ -75,6 +73,7 @@ type Liquidation @entity(immutable: true) {
   marginLevelLiquidationThreshold: BigInt! # uint256
   totalCollateralUsd: BigInt! # uint256
   totalDebtUsd: BigInt! # uint256
+  memePrice: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
