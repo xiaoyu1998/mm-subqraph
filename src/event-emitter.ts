@@ -11,7 +11,7 @@ import {
   Repay as RepayEvent,
   Swap as SwapEvent,
   Withdraw as WithdrawEvent
-} from "../generated/Contract/Contract"
+} from "../generated/EventEmitter/EventEmitter"
 import {
   Add,
   Borrow,
@@ -220,6 +220,7 @@ export function handleSwap(event: SwapEvent): void {
   entity.account = event.params.account
   entity.tokenIn = event.params.tokenIn
   entity.tokenOut = event.params.tokenOut
+  entity.positionId = event.params.positionId
   entity.amountIn = event.params.amountIn
   entity.amountOut = event.params.amountOut
   entity.fee = event.params.fee

@@ -13,7 +13,7 @@ import {
   Repay,
   Swap,
   Withdraw
-} from "../generated/Contract/Contract"
+} from "../generated/EventEmitter/EventEmitter"
 
 export function createAddEvent(
   adder: Address,
@@ -513,6 +513,7 @@ export function createSwapEvent(
   account: Address,
   tokenIn: Address,
   tokenOut: Address,
+  positionId: BigInt,
   amountIn: BigInt,
   amountOut: BigInt,
   fee: BigInt,
@@ -533,6 +534,12 @@ export function createSwapEvent(
   )
   swapEvent.parameters.push(
     new ethereum.EventParam("tokenOut", ethereum.Value.fromAddress(tokenOut))
+  )
+  swapEvent.parameters.push(
+    new ethereum.EventParam(
+      "positionId",
+      ethereum.Value.fromUnsignedBigInt(positionId)
+    )
   )
   swapEvent.parameters.push(
     new ethereum.EventParam(

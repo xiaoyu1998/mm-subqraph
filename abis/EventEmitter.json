@@ -514,6 +514,12 @@
       {
         "indexed": false,
         "internalType": "uint256",
+        "name": "positionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "amountIn",
         "type": "uint256"
       },
@@ -860,6 +866,7 @@
       { "internalType": "address", "name": "account", "type": "address" },
       { "internalType": "address", "name": "tokenIn", "type": "address" },
       { "internalType": "address", "name": "tokenOut", "type": "address" },
+      { "internalType": "uint256", "name": "positionId", "type": "uint256" },
       { "internalType": "uint256", "name": "amountIn", "type": "uint256" },
       { "internalType": "uint256", "name": "amountOut", "type": "uint256" },
       { "internalType": "uint256", "name": "fee", "type": "uint256" },
