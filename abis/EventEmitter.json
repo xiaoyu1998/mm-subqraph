@@ -263,6 +263,12 @@
       {
         "indexed": false,
         "internalType": "uint256",
+        "name": "positionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "marginLevel",
         "type": "uint256"
       },
@@ -587,6 +593,12 @@
       {
         "indexed": false,
         "internalType": "uint256",
+        "name": "positionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "withdrawAmount",
         "type": "uint256"
       },
@@ -747,6 +759,7 @@
     "inputs": [
       { "internalType": "address", "name": "liquidator", "type": "address" },
       { "internalType": "address", "name": "account", "type": "address" },
+      { "internalType": "uint256", "name": "positionId", "type": "uint256" },
       { "internalType": "uint256", "name": "marginLevel", "type": "uint256" },
       {
         "internalType": "uint256",
@@ -908,6 +921,7 @@
       { "internalType": "address", "name": "withdrawer", "type": "address" },
       { "internalType": "address", "name": "baseToken", "type": "address" },
       { "internalType": "address", "name": "memeToken", "type": "address" },
+      { "internalType": "uint256", "name": "positionId", "type": "uint256" },
       {
         "internalType": "uint256",
         "name": "withdrawAmount",

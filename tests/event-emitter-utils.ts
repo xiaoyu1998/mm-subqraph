@@ -253,6 +253,7 @@ export function createDepositEvent(
 export function createLiquidationEvent(
   liquidator: Address,
   account: Address,
+  positionId: BigInt,
   marginLevel: BigInt,
   marginLevelLiquidationThreshold: BigInt,
   totalCollateralUsd: BigInt,
@@ -271,6 +272,12 @@ export function createLiquidationEvent(
   )
   liquidationEvent.parameters.push(
     new ethereum.EventParam("account", ethereum.Value.fromAddress(account))
+  )
+  liquidationEvent.parameters.push(
+    new ethereum.EventParam(
+      "positionId",
+      ethereum.Value.fromUnsignedBigInt(positionId)
+    )
   )
   liquidationEvent.parameters.push(
     new ethereum.EventParam(
@@ -588,6 +595,7 @@ export function createWithdrawEvent(
   withdrawer: Address,
   baseToken: Address,
   memeToken: Address,
+  positionId: BigInt,
   withdrawAmount: BigInt,
   to: Address,
   baseCollateral: BigInt,
@@ -610,6 +618,12 @@ export function createWithdrawEvent(
   )
   withdrawEvent.parameters.push(
     new ethereum.EventParam("memeToken", ethereum.Value.fromAddress(memeToken))
+  )
+  withdrawEvent.parameters.push(
+    new ethereum.EventParam(
+      "positionId",
+      ethereum.Value.fromUnsignedBigInt(positionId)
+    )
   )
   withdrawEvent.parameters.push(
     new ethereum.EventParam(

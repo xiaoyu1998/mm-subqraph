@@ -69,6 +69,7 @@ type Liquidation @entity(immutable: true) {
   id: Bytes!
   liquidator: Bytes! # address
   account: Bytes! # address
+  positionId: BigInt! # uint256
   marginLevel: BigInt! # uint256
   marginLevelLiquidationThreshold: BigInt! # uint256
   totalCollateralUsd: BigInt! # uint256
@@ -140,6 +141,7 @@ type Swap @entity(immutable: true) {
   account: Bytes! # address
   tokenIn: Bytes! # address
   tokenOut: Bytes! # address
+  positionId: BigInt! # uint256
   amountIn: BigInt! # uint256
   amountOut: BigInt! # uint256
   fee: BigInt! # uint256
@@ -157,6 +159,7 @@ type Withdraw @entity(immutable: true) {
   withdrawer: Bytes! # address
   baseToken: Bytes! # address
   memeToken: Bytes! # address
+  positionId: BigInt! # uint256
   withdrawAmount: BigInt! # uint256
   to: Bytes! # address
   baseCollateral: BigInt! # uint256

@@ -123,6 +123,7 @@ export function handleLiquidation(event: LiquidationEvent): void {
   )
   entity.liquidator = event.params.liquidator
   entity.account = event.params.account
+  entity.positionId = event.params.positionId
   entity.marginLevel = event.params.marginLevel
   entity.marginLevelLiquidationThreshold =
     event.params.marginLevelLiquidationThreshold
@@ -243,6 +244,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
   entity.withdrawer = event.params.withdrawer
   entity.baseToken = event.params.baseToken
   entity.memeToken = event.params.memeToken
+  entity.positionId = event.params.positionId
   entity.withdrawAmount = event.params.withdrawAmount
   entity.to = event.params.to
   entity.baseCollateral = event.params.baseCollateral
