@@ -8,7 +8,7 @@ dataSources:
     name: EventEmitter
     network: arbitrum-sepolia
     source:
-      address: "0x712Ae76a5590f5Cda4A34bd683F7C28Bac58bcb7"
+      address: "0x39edf9E413976DD7763cEA615eed500Ef21C1849"
       abi: EventEmitter
       startBlock: 112618446
     mapping:
