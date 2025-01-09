@@ -1,8 +1,8 @@
 {
-  "arbitrum-sepolia": {
+  "base-sepolia": {
     "EventEmitter": {
-      "address": "0x712Ae76a5590f5Cda4A34bd683F7C28Bac58bcb7",
-      "startBlock": 112618446
+      "address": "0x4F5d18129Fa00031d5B91e5514839c084cD878BC",
+      "startBlock": 20330764
     }
   }
 }
