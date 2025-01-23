@@ -8,9 +8,9 @@ dataSources:
     name: EventEmitter
     network: base-sepolia
     source:
-      address: "0x7f82Aca0A8e47A59bc4B3D8Ea064C72EB828938c"
+      address: "0x4e50B162192fDbc2E4e298dFD251D47F47ecD046"
       abi: EventEmitter
-      startBlock: 20722421
+      startBlock: 20936781
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
