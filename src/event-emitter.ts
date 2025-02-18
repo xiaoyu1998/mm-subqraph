@@ -7,6 +7,7 @@ import {
   Liquidation as LiquidationEvent,
   PoolCreated as PoolCreatedEvent,
   PoolUpdated as PoolUpdatedEvent,
+  Position as PositionEvent,
   Remove as RemoveEvent,
   Repay as RepayEvent,
   Swap as SwapEvent,
@@ -21,6 +22,7 @@ import {
   Liquidation,
   PoolCreated,
   PoolUpdated,
+  Position,
   Remove,
   Repay,
   Swap,
@@ -165,6 +167,27 @@ export function handlePoolUpdated(event: PoolUpdatedEvent): void {
   entity.borrowRate = event.params.borrowRate
   entity.liquidityIndex = event.params.liquidityIndex
   entity.borrowIndex = event.params.borrowIndex
+
+  entity.blockNumber = event.block.number
+  entity.blockTimestamp = event.block.timestamp
+  entity.transactionHash = event.transaction.hash
+
+  entity.save()
+}
+
+export function handlePosition(event: PositionEvent): void {
+  let entity = new Position(
+    event.transaction.hash.concatI32(event.logIndex.toI32())
+  )
+  entity.account = event.params.account
+  entity.actionType = event.params.actionType
+  entity.baseToken = event.params.baseToken
+  entity.memeToken = event.params.memeToken
+  entity.positionId = event.params.positionId
+  entity.baseCollateral = event.params.baseCollateral
+  entity.baseDebtScaled = event.params.baseDebtScaled
+  entity.memeCollateral = event.params.memeCollateral
+  entity.memeDebtScaled = event.params.memeDebtScaled
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp

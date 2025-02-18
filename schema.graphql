@@ -105,6 +105,22 @@ type PoolUpdated @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
+type Position @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  actionType: BigInt! # uint256
+  baseToken: Bytes! # address
+  memeToken: Bytes! # address
+  positionId: BigInt! # uint256
+  baseCollateral: BigInt! # uint256
+  baseDebtScaled: BigInt! # uint256
+  memeCollateral: BigInt! # uint256
+  memeDebtScaled: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
 type Remove @entity(immutable: true) {
   id: Bytes!
   remover: Bytes! # address

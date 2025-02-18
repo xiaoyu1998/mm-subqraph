@@ -9,6 +9,7 @@ import {
   Liquidation,
   PoolCreated,
   PoolUpdated,
+  Position,
   Remove,
   Repay,
   Swap,
@@ -396,6 +397,70 @@ export function createPoolUpdatedEvent(
   )
 
   return poolUpdatedEvent
+}
+
+export function createPositionEvent(
+  account: Address,
+  actionType: BigInt,
+  baseToken: Address,
+  memeToken: Address,
+  positionId: BigInt,
+  baseCollateral: BigInt,
+  baseDebtScaled: BigInt,
+  memeCollateral: BigInt,
+  memeDebtScaled: BigInt
+): Position {
+  let positionEvent = changetype<Position>(newMockEvent())
+
+  positionEvent.parameters = new Array()
+
+  positionEvent.parameters.push(
+    new ethereum.EventParam("account", ethereum.Value.fromAddress(account))
+  )
+  positionEvent.parameters.push(
+    new ethereum.EventParam(
+      "actionType",
+      ethereum.Value.fromUnsignedBigInt(actionType)
+    )
+  )
+  positionEvent.parameters.push(
+    new ethereum.EventParam("baseToken", ethereum.Value.fromAddress(baseToken))
+  )
+  positionEvent.parameters.push(
+    new ethereum.EventParam("memeToken", ethereum.Value.fromAddress(memeToken))
+  )
+  positionEvent.parameters.push(
+    new ethereum.EventParam(
+      "positionId",
+      ethereum.Value.fromUnsignedBigInt(positionId)
+    )
+  )
+  positionEvent.parameters.push(
+    new ethereum.EventParam(
+      "baseCollateral",
+      ethereum.Value.fromUnsignedBigInt(baseCollateral)
+    )
+  )
+  positionEvent.parameters.push(
+    new ethereum.EventParam(
+      "baseDebtScaled",
+      ethereum.Value.fromUnsignedBigInt(baseDebtScaled)
+    )
+  )
+  positionEvent.parameters.push(
+    new ethereum.EventParam(
+      "memeCollateral",
+      ethereum.Value.fromUnsignedBigInt(memeCollateral)
+    )
+  )
+  positionEvent.parameters.push(
+    new ethereum.EventParam(
+      "memeDebtScaled",
+      ethereum.Value.fromUnsignedBigInt(memeDebtScaled)
+    )
+  )
+
+  return positionEvent
 }
 
 export function createRemoveEvent(

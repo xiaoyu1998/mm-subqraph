@@ -386,6 +386,67 @@
       {
         "indexed": true,
         "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "actionType",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "baseToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "memeToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "positionId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "baseCollateral",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "baseDebtScaled",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "memeCollateral",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "memeDebtScaled",
+        "type": "uint256"
+      }
+    ],
+    "name": "Position",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
         "name": "remover",
         "type": "address"
       },
@@ -814,6 +875,35 @@
       { "internalType": "uint256", "name": "borrowIndex", "type": "uint256" }
     ],
     "name": "emitPoolUpdated",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "account", "type": "address" },
+      { "internalType": "uint256", "name": "actionType", "type": "uint256" },
+      { "internalType": "address", "name": "baseToken", "type": "address" },
+      { "internalType": "address", "name": "memeToken", "type": "address" },
+      { "internalType": "uint256", "name": "positionId", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "baseCollateral",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "baseDebtScaled",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "memeCollateral",
+        "type": "uint256"
+      },
+      { "internalType": "uint256", "name": "memeDebtScaled", "type": "uint256" }
+    ],
+    "name": "emitPosition",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

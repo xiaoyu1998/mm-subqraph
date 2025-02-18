@@ -8,9 +8,9 @@ dataSources:
     name: EventEmitter
     network: base-sepolia
     source:
-      address: "0x4e50B162192fDbc2E4e298dFD251D47F47ecD046"
+      address: "0x3977E3AFfCdA651f69754704B6b9eE3fefa65888"
       abi: EventEmitter
-      startBlock: 20936781
+      startBlock: 22053493
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -24,6 +24,7 @@ dataSources:
         - Liquidation
         - PoolCreated
         - PoolUpdated
+        - Position
         - Remove
         - Repay
         - Swap
@@ -48,6 +49,8 @@ dataSources:
           handler: handlePoolCreated
         - event: PoolUpdated(indexed address,uint256,uint256,uint256,uint256)
           handler: handlePoolUpdated
+        - event: Position(indexed address,uint256,address,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handlePosition
         - event: Remove(indexed address,address,address,uint256,address,uint256,uint256)
           handler: handleRemove
         - event: Repay(indexed address,address,address,uint256,uint8,uint256,uint256,uint256,uint256,uint256)
