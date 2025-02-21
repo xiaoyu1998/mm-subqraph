@@ -8,7 +8,7 @@ dataSources:
     name: EventEmitter
     network: base-sepolia
     source:
-      address: "0x3977E3AFfCdA651f69754704B6b9eE3fefa65888"
+      address: "0xB0c875DCD8E0978a517AcCA73b748B0e1D608D97"
       abi: EventEmitter
       startBlock: 22053493
     mapping:
